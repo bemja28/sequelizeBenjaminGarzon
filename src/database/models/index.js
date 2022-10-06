@@ -39,7 +39,7 @@ sequelize
             console.log('Unable to connect to the database:', err);
         });
         //muestra por consola si la coneccion con la base de datos se establecio correctamente
-
+//permite leer todos los modelos
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;

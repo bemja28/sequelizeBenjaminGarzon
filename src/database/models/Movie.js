@@ -4,26 +4,34 @@ module.exports = (sequelize, dataTypes) => {
         id: {
             type: dataTypes.INTEGER,
             primaryKey: true,
+            allowNull: false,
             autoIncrement: true
         },
         title: {
-            type: dataTypes.STRING
+            type: dataTypes.STRING(500),
+            allowNull : false
         },
         rating: {
-            type: dataTypes.INTEGER
-        },
-        length: {
-            type: dataTypes.INTEGER
+            type: dataTypes.DECIMAL(3,1).UNSIGNED,
+            allowNull : false
         },
         awards: {
-            type: dataTypes.INTEGER
+            type: dataTypes.INTEGER.UNSIGNED,
+            allowNull : false,
+            defaultValue : 0
         },
         release_date: {
-            type: dataTypes.DATE
+            type: dataTypes.DATE,
+            allowNull : true
+        },
+        length: {
+            type: dataTypes.INTEGER.UNSIGNED,
+            //allowNull : true,
+            defaultValue : null
         },
         genre_id : {
             type : dataTypes.INTEGER.UNSIGNED,
-            allowNull : true,
+            //allowNull : true,
             defaultValue : null
         }
 
@@ -31,7 +39,8 @@ module.exports = (sequelize, dataTypes) => {
     };
     let config = {
         tableName: 'movies',
-        timestamps: false
+        timestamps: true,
+        underscored:true
     };
     const Movie = sequelize.define(alias, cols, config)
 

@@ -1,12 +1,18 @@
-
+const { response } = require("express")
 const db = require("../database/models")
 module.exports ={
     list : (req,res) => {
-        res.render("genresList")
+        db.Genre.findAll()
+        .then(genres => res.render("genresList",{
+            genres
+        }))
+        .catch(error => console.log(error))
     },
 
     detail : (req,res) => {
-        res.render("genresDetails")
+        db.Genre.findByPk(req.params.id)
+        .then(genre => res.render("genresDetail",{genre}))
+        .catch(error => console.log(error))
     }
 }
 
